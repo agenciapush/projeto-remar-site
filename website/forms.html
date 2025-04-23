@@ -1,0 +1,330 @@
+<!-- Formulário de Participante -->
+<div id="participant-form-overlay" class="form-overlay">
+    <div class="form-container">
+        <button id="close-participant-form" class="form-close" aria-label="Fechar formulário">×</button>
+        <h2 class="form-title">Cadastro de Participante</h2>
+        
+        <form id="participant-form">
+            <div class="form-section">
+                <h3 class="form-section-title">Dados do Participante</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="participant-name" class="required-field">Nome Completo</label>
+                        <input type="text" id="participant-name" class="form-control" required>
+                        <div id="participant-name-error" class="form-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="participant-birth" class="required-field">Data de Nascimento</label>
+                        <input type="date" id="participant-birth" class="form-control" required>
+                        <div id="participant-birth-error" class="form-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="participant-cpf" class="required-field">CPF</label>
+                        <input type="text" id="participant-cpf" class="form-control" placeholder="000.000.000-00" required>
+                        <div id="participant-cpf-error" class="form-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="participant-rg" class="required-field">RG</label>
+                        <input type="text" id="participant-rg" class="form-control" required>
+                        <div id="participant-rg-error" class="form-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="participant-phone" class="required-field">Telefone/WhatsApp</label>
+                        <input type="tel" id="participant-phone" class="form-control" placeholder="(00) 00000-0000" required>
+                        <div id="participant-phone-error" class="form-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="participant-email">E-mail</label>
+                        <input type="email" id="participant-email" class="form-control" placeholder="exemplo@email.com">
+                        <div id="participant-email-error" class="form-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="participant-address" class="required-field">Endereço Completo</label>
+                        <input type="text" id="participant-address" class="form-control" required>
+                        <div id="participant-address-error" class="form-error"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3 class="form-section-title">Informações sobre a Deficiência</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="disability-type" class="required-field">Tipo de Deficiência</label>
+                        <select id="disability-type" class="form-control" required>
+                            <option value="">Selecione</option>
+                            <option value="fisica">Física</option>
+                            <option value="visual">Visual</option>
+                            <option value="auditiva">Auditiva</option>
+                            <option value="intelectual">Intelectual</option>
+                            <option value="motora">Motora</option>
+                            <option value="multipla">Múltipla</option>
+                            <option value="outra">Outra</option>
+                        </select>
+                        <div id="disability-type-error" class="form-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="disability-details">Detalhes da Deficiência</label>
+                        <textarea id="disability-details" class="form-control" rows="3" placeholder="Descreva detalhes sobre a deficiência que possam ser relevantes para as atividades"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="medical-report" class="required-field">Laudo Médico</label>
+                        <input type="file" id="medical-report" class="form-control form-file" required>
+                        <div class="form-file-label">Formatos aceitos: PDF, JPG, PNG (máx. 5MB)</div>
+                        <div id="medical-report-error" class="form-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mobility-aids">Utiliza algum auxílio de mobilidade?</label>
+                        <select id="mobility-aids" class="form-control">
+                            <option value="">Selecione</option>
+                            <option value="cadeira">Cadeira de rodas</option>
+                            <option value="muletas">Muletas</option>
+                            <option value="andador">Andador</option>
+                            <option value="bengala">Bengala</option>
+                            <option value="protese">Prótese</option>
+                            <option value="outro">Outro</option>
+                            <option value="nenhum">Não utiliza</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mobility-details">Detalhes sobre mobilidade</label>
+                        <textarea id="mobility-details" class="form-control" rows="3" placeholder="Informe detalhes sobre mobilidade que possam ser relevantes para as atividades"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3 class="form-section-title">Informações Complementares</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="emergency-contact" class="required-field">Contato de Emergência</label>
+                        <input type="text" id="emergency-contact" class="form-control" placeholder="Nome e telefone" required>
+                        <div id="emergency-contact-error" class="form-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="health-info">Informações de Saúde Relevantes</label>
+                        <textarea id="health-info" class="form-control" rows="3" placeholder="Alergias, medicamentos, condições médicas, etc."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Termo de Responsabilidade</label>
+                        <div class="form-check">
+                            <input type="checkbox" id="responsibility-term" required>
+                            <label for="responsibility-term" class="required-field">Declaro que li e concordo com os termos de responsabilidade e estou ciente dos riscos envolvidos nas atividades aquáticas.</label>
+                            <div id="responsibility-term-error" class="form-error"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Autorização de Uso de Imagem</label>
+                        <div class="form-check">
+                            <input type="checkbox" id="image-authorization" required>
+                            <label for="image-authorization" class="required-field">Autorizo o uso de minha imagem em fotos e vídeos para divulgação do Projeto Remar em suas redes sociais e materiais institucionais.</label>
+                            <div id="image-authorization-error" class="form-error"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="form-submit">Enviar Cadastro</button>
+            </div>
+            
+            <div class="form-note">
+                <p>Todos os campos marcados com * são obrigatórios.</p>
+                <p>Seus dados serão tratados com sigilo e utilizados apenas para fins de cadastro no Projeto Remar.</p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Formulário de Voluntário -->
+<div id="volunteer-form-overlay" class="form-overlay">
+    <div class="form-container">
+        <button id="close-volunteer-form" class="form-close" aria-label="Fechar formulário">×</button>
+        <h2 class="form-title">Cadastro de Voluntário</h2>
+        
+        <form id="volunteer-form">
+            <div class="form-section">
+                <h3 class="form-section-title">Dados Pessoais</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volunteer-name" class="required-field">Nome Completo</label>
+                        <input type="text" id="volunteer-name" class="form-control" required>
+                        <div id="volunteer-name-error" class="form-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="volunteer-birth" class="required-field">Data de Nascimento</label>
+                        <input type="date" id="volunteer-birth" class="form-control" required>
+                        <div id="volunteer-birth-error" class="form-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volunteer-cpf" class="required-field">CPF</label>
+                        <input type="text" id="volunteer-cpf" class="form-control" placeholder="000.000.000-00" required>
+                        <div id="volunteer-cpf-error" class="form-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="volunteer-rg" class="required-field">RG</label>
+                        <input type="text" id="volunteer-rg" class="form-control" required>
+                        <div id="volunteer-rg-error" class="form-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volunteer-phone" class="required-field">Telefone/WhatsApp</label>
+                        <input type="tel" id="volunteer-phone" class="form-control" placeholder="(00) 00000-0000" required>
+                        <div id="volunteer-phone-error" class="form-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="volunteer-email" class="required-field">E-mail</label>
+                        <input type="email" id="volunteer-email" class="form-control" placeholder="exemplo@email.com" required>
+                        <div id="volunteer-email-error" class="form-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volunteer-address" class="required-field">Endereço Completo</label>
+                        <input type="text" id="volunteer-address" class="form-control" required>
+                        <div id="volunteer-address-error" class="form-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volunteer-profession">Profissão/Ocupação</label>
+                        <input type="text" id="volunteer-profession" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="volunteer-education">Formação Acadêmica</label>
+                        <input type="text" id="volunteer-education" class="form-control">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3 class="form-section-title">Informações para Voluntariado</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volunteer-area" class="required-field">Área de Interesse</label>
+                        <select id="volunteer-area" class="form-control" required>
+                            <option value="">Selecione</option>
+                            <option value="atividades">Apoio nas atividades aquáticas</option>
+                            <option value="fotografia">Fotografia e comunicação</option>
+                            <option value="logistica">Apoio logístico e organização</option>
+                            <option value="saude">Apoio em saúde</option>
+                            <option value="captacao">Captação de recursos e parcerias</option>
+                            <option value="outra">Outra área</option>
+                        </select>
+                        <div id="volunteer-area-error" class="form-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="volunteer-availability" class="required-field">Disponibilidade</label>
+                        <select id="volunteer-availability" class="form-control" required>
+                            <option value="">Selecione</option>
+                            <option value="quartas">Quartas-feiras (manhã)</option>
+                            <option value="finais">Finais de semana (ocasionalmente)</option>
+                            <option value="ambos">Ambos</option>
+                            <option value="remoto">Apenas trabalho remoto</option>
+                        </select>
+                        <div id="volunteer-availability-error" class="form-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volunteer-experience">Experiência Prévia</label>
+                        <textarea id="volunteer-experience" class="form-control" rows="3" placeholder="Descreva experiências anteriores com voluntariado, trabalho com pessoas com deficiência ou atividades aquáticas"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volunteer-motivation" class="required-field">Motivação</label>
+                        <textarea id="volunteer-motivation" class="form-control" rows="3" placeholder="Por que você deseja ser voluntário no Projeto Remar?" required></textarea>
+                        <div id="volunteer-motivation-error" class="form-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volunteer-skills">Habilidades e Competências</label>
+                        <textarea id="volunteer-skills" class="form-control" rows="3" placeholder="Descreva habilidades que você possui e que podem contribuir com o projeto"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3 class="form-section-title">Termos e Condições</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" id="volunteer-term" required>
+                            <label for="volunteer-term" class="required-field">Declaro que li e concordo com os termos de voluntariado e estou ciente das responsabilidades envolvidas.</label>
+                            <div id="volunteer-term-error" class="form-error"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" id="volunteer-image-authorization" required>
+                            <label for="volunteer-image-authorization" class="required-field">Autorizo o uso de minha imagem em fotos e vídeos para divulgação do Projeto Remar em suas redes sociais e materiais institucionais.</label>
+                            <div id="volunteer-image-authorization-error" class="form-error"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="form-submit">Enviar Cadastro</button>
+            </div>
+            
+            <div class="form-note">
+                <p>Todos os campos marcados com * são obrigatórios.</p>
+                <p>Após o envio do cadastro, nossa equipe entrará em contato para agendar uma entrevista e fornecer mais informações sobre o processo de voluntariado.</p>
+            </div>
+        </form>
+    </div>
+</div>

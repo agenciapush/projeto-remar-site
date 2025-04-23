@@ -1,0 +1,58 @@
+# Estrutura do Website do Projeto Remar
+
+## Páginas Principais
+1. **Home/Início**
+   - Banner principal com imagens de destaque
+   - Breve apresentação do projeto
+   - Chamada para ação (inscrição, voluntariado)
+   - Destaques de atividades recentes
+
+2. **Quem Somos**
+   - História do projeto
+   - Missão, visão e valores
+   - Equipe e estrutura organizacional
+   - Depoimentos de participantes
+
+3. **Atividades**
+   - Descrição das modalidades (Canoa Havaiana, Stand Up Paddle, Caiaque)
+   - Galeria de fotos das atividades
+   - Calendário de eventos
+   - Informações sobre a "Remada em Família"
+
+4. **Como Participar**
+   - Informações para pessoas com deficiência
+   - Processo de inscrição
+   - Documentos necessários
+   - Perguntas frequentes
+
+5. **Voluntariado**
+   - Como se tornar voluntário
+   - Áreas de atuação
+   - Depoimentos de voluntários
+   - Formulário de interesse
+
+6. **Galeria**
+   - Fotos organizadas por eventos/datas
+   - Vídeos das atividades
+   - Depoimentos em vídeo
+
+7. **Contato**
+   - Formulário de contato
+   - Informações de localização
+   - Redes sociais
+   - Horários de atendimento
+
+## Componentes Comuns
+- **Header/Cabeçalho**: Logo, menu de navegação responsivo
+- **Footer/Rodapé**: Informações de contato, links para redes sociais, mapa do site
+- **Barra de Acessibilidade**: Opções para aumentar fonte, alto contraste, etc.
+- **Botão de Doação/Apoio**: Link destacado para apoiar o projeto
+
+## Funcionalidades Especiais
+- Formulário de inscrição para participantes
+- Formulário para cadastro de voluntários
+- Galeria de imagens com lightbox
+- Mapa interativo com localização das atividades
+- Calendário de eventos
+- Opções de acessibilidade (alto contraste, aumento de fonte, etc.)
+- Versão responsiva para dispositivos móveis
