@@ -1012,24 +1012,26 @@ textarea.form-control {
   .responsive-video video {
     max-height: 100vh;
   }
-  .responsive-video .vertical-video {
-    display: block;
+  .about-image .responsive-video {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    max-width: 400px;
     margin: 0 auto;
-    max-height: 60vh; /* ajuste como quiser: 50vh, 70vh etc */
-    width: auto;
-    height: auto;
-    max-width: 100%;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   }
   
-  .about-image .vertical-video {
-    width: 65%;
-    height: auto;
-    display: block;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-height: 70vh;
-    margin: 0 auto;
+  .about-image .responsive-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
   }
+  
   
   @media (max-width: 768px) {
     .about-image .vertical-video {
@@ -1087,4 +1089,23 @@ textarea.form-control {
 }
 .espaco-topo-grande {
   margin-top: 2rem;
+}
+/* Estilo para iframe vertical responsivo (Vimeo) */
+.responsive-video {
+  position: relative;
+  padding-top: 500%; /* Proporção 9:16 para vídeo vertical */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.responsive-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 12px;
 }
