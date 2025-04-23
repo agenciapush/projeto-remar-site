@@ -1000,12 +1000,7 @@ textarea.form-control {
     transform: rotate(360deg);
   }
 }
-/* Torna o vídeo responsivo dentro do contêiner .responsive-video */
-.responsive-video video {
-  max-width: 100%;
-  height: auto;
-  display: block; /* opcional: garante que o vídeo seja um elemento de bloco */
-}
+
 
 /* Em telas a partir de 768px de largura, limita a altura do vídeo à altura da tela */
 @media (min-width: 768px) {
@@ -1088,4 +1083,11 @@ textarea.form-control {
 }
 .espaco-topo-grande {
   margin-top: 2rem;
+}
+.about-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Garante que preencha a altura do grid */
+  padding-top: 2rem; /* Aqui você pode ajustar pra descer um pouco mais */
 }
