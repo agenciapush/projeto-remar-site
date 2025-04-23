@@ -305,7 +305,7 @@ img {
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-  padding: 0;
+  padding: 3;
   background: none; /* remove o fundo branco */
   box-shadow: none; /* remove sombra extra, já está no vídeo */
   margin-top: -5rem;
