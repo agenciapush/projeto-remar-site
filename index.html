@@ -1132,3 +1132,46 @@
       });
     });
   </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const openHistory = document.getElementById("open-history");
+      const closeHistory = document.getElementById("close-history");
+      const overlayHistory = document.getElementById("history-overlay");
+  
+      openHistory.addEventListener("click", () => {
+        overlayHistory.style.display = "flex";
+      });
+  
+      closeHistory.addEventListener("click", () => {
+        overlayHistory.style.display = "none";
+      });
+  
+      // Missão
+      const openMission = document.getElementById("open-mission");
+      const closeMission = document.getElementById("close-mission");
+      const overlayMission = document.getElementById("mission-overlay");
+  
+      openMission.addEventListener("click", () => {
+        overlayMission.style.display = "flex";
+      });
+  
+      closeMission.addEventListener("click", () => {
+        overlayMission.style.display = "none";
+      });
+  
+      // Valores
+      const openValues = document.getElementById("open-values");
+      const closeValues = document.getElementById("close-values");
+      const overlayValues = document.getElementById("values-overlay");
+  
+      openValues.addEventListener("click", () => {
+        overlayValues.style.display = "flex";
+      });
+  
+      closeValues.addEventListener("click", () => {
+        overlayValues.style.display = "none";
+      });
+    });
+  </script>
+  
