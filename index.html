@@ -170,6 +170,84 @@
             </div>
         </div>
     </section>
+<!-- Calendário Remar - Botão e Overlay -->
+<div class="section-info animate-on-scroll" style="text-align: center; margin-top: 3rem;">
+    <h3>Quando e Onde</h3>
+    <p style="text-align: justify;">As atividades acontecem às quartas-feiras pela manhã (7h às 9h) na Beira Mar de Fortaleza, em sistema de rodízio entre escolas parceiras.</p>
+    <div style="text-align: center; margin-top: 2rem;">
+        <button id="open-calendar" class="btn btn-primary">📅 Calendário Remar</button>
+    </div>
+</div>
+
+<!-- Overlay do Calendário -->
+<div id="calendar-overlay" class="form-overlay" style="display: none;">
+  <div class="form-container">
+    <button id="close-calendar" class="form-close" aria-label="Fechar calendário">×</button>
+    <h2 class="form-title">Calendário Remar 1º Semestre 2025</h2>
+    <div class="calendar-content">
+      <p><strong>✨ Janeiro</strong><br>
+      ▪︎ 08.01 – Vibe Va'a<br>
+      ▪︎ 15.01 – Kayakeria<br>
+      ▪︎ 22.01 – Ceará Sup Club<br>
+      ▪︎ 29.01 – Vibe Va'a</p>
+
+      <p><strong>✨ Fevereiro</strong><br>
+      ▪︎ 05.02 – Kayakeria<br>
+      ▪︎ 12.02 – Ceará Sup Club<br>
+      ▪︎ 19.02 – Vibe Va'a<br>
+      ▪︎ 26.02 – Kayakeria (Aniversariante do mês)</p>
+
+      <p><strong>✨ Março</strong><br>
+      ▪︎ 05.03 – Sem Atividade (Feriado Quarta-feira de cinzas)<br>
+      ▪︎ 12.03 – Elione (Comemoração Dia das Mulheres 🌹)<br>
+      ▪︎ 19.03 – Sem Atividade (Feriado São José)<br>
+      ▪︎ 26.03 – Vibe Va'a</p>
+
+      <p><strong>✨ Abril</strong><br>
+      ▪︎ 02.04 – Kayakeria<br>
+      ▪︎ 09.04 – Elione<br>
+      ▪︎ 16.04 – Ceará Sup Club<br>
+      ▪︎ 23.04 – Vibe Va'a<br>
+      ▪︎ 30.04 – Kayakeria (Aniversariante do mês)</p>
+
+      <p><strong>✨ Maio</strong><br>
+      ▪︎ 07.05 – Elione<br>
+      ▪︎ 14.05 – Ceará Sup Club<br>
+      ▪︎ 21.05 – Vibe Va'a<br>
+      ▪︎ 28.05 – Kayakeria</p>
+
+      <p><strong>✨ Junho</strong><br>
+      ▪︎ 04.06 – Elione<br>
+      ▪︎ 11.06 – Ceará Sup Club<br>
+      ▪︎ 18.06 – Vibe Va'a<br>
+      ▪︎ 25.06 – Kayakeria (São João – Aniversariante do mês)</p>
+
+      <p><strong>✨ Julho</strong><br>
+      ▪︎ 02.07 – Elione<br>
+      ▪︎ 09.07 – Ceará Sup Club<br>
+      ▪︎ 16.07 – Vibe Va'a<br>
+      ▪︎ 23.07 – Kayakeria<br>
+      ▪︎ 30.07 – Elione (Aniversariantes do mês)</p>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript para o botão -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const openBtn = document.getElementById("open-calendar");
+    const closeBtn = document.getElementById("close-calendar");
+    const overlay = document.getElementById("calendar-overlay");
+
+    openBtn.addEventListener("click", () => {
+      overlay.style.display = "flex";
+    });
+
+    closeBtn.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+  });
+</script>
 
     <!-- Galeria -->
     <section id="galeria" class="gallery section">
