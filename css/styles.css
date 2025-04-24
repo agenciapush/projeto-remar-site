@@ -1106,5 +1106,7 @@ textarea.form-control {
 }
 
 .text-shadow-hover:hover {
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  transform: scale(1.08);
 }
+
