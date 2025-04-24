@@ -305,10 +305,10 @@ img {
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-  padding: 3;
+  padding: 0;
   background: none; /* remove o fundo branco */
   box-shadow: none; /* remove sombra extra, já está no vídeo */
-  margin-top: -5rem;
+  margin-top: 1.5rem;
 }
 
 
