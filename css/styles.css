@@ -1131,5 +1131,15 @@ textarea.form-control {
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
 }
 
+/* Efeito suave apenas para subtítulos da seção Quem Somos */
+.sobre-subtitulo-hover {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.sobre-subtitulo-hover:hover {
+  transform: scale(1.05);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+}
 
 
