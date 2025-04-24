@@ -1023,5 +1023,21 @@
     <script src="js/main.js"></script>
     <script src="js/accessibility.js"></script>
     <script src="js/forms.js"></script>
+    <!-- JavaScript para o botão -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const openBtn = document.getElementById("open-calendar");
+      const closeBtn = document.getElementById("close-calendar");
+      const overlay = document.getElementById("calendar-overlay");
+  
+      openBtn.addEventListener("click", () => {
+        overlay.style.display = "flex";
+      });
+  
+      closeBtn.addEventListener("click", () => {
+        overlay.style.display = "none";
+      });
+    });
+  </script>
 </body>
 </html>
