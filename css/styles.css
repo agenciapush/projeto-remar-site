@@ -105,6 +105,13 @@ img {
   margin-bottom: 1rem;
   position: relative;
   display: inline-block;
+  cursor: pointer;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.section-title h2:hover {
+  transform: scale(1.1);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .section-title h2::after {
@@ -122,6 +129,32 @@ img {
   color: var(--black-color);
   max-width: 700px;
   margin: 0 auto;
+}
+
+@keyframes shadow-drop-2-center {
+  0% {
+    transform: translateZ(0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: translateZ(50px);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@-webkit-keyframes shadow-drop-2-center {
+  0% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translateZ(50px);
+            transform: translateZ(50px);
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
 }
 
 /* Barra de Acessibilidade */
@@ -1108,5 +1141,9 @@ textarea.form-control {
 .text-shadow-hover:hover {
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
   transform: scale(1.08);
+  transform-origin: center center;
+  z-index: 1;
+  position: relative;
 }
+
 
