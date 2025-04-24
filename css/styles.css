@@ -1091,3 +1091,13 @@ textarea.form-control {
   height: 100%; /* Garante que preencha a altura do grid */
   padding-top: 2rem; /* Aqui você pode ajustar pra descer um pouco mais */
 }
+<style>
+  .hoverable-title {
+    transition: all 0.3s ease;
+  }
+
+  .hoverable-title:hover {
+    transform: scale(1.08);
+    color: var(--primary-color);
+  }
+</style>

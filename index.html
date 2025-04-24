@@ -95,7 +95,7 @@
       
           <div class="about-content">
             <div class="about-text animate-on-scroll">
-              <h3>Nossa História</h3>
+                <h3 id="open-history" class="hoverable-title" style="cursor:pointer;">Nossa História</h3>
               <p style="text-align: justify;">O Projeto Remar nasceu em 2013 na Lagoa do Colosso, em Fortaleza‑CE, com o objetivo de oferecer atividades aquáticas adaptadas a pessoas com deficiência. Em 2020, o projeto ampliou suas atividades para a região da Beira Mar, expandindo suas ações para o mar, onde permanece ativo até hoje.</p>
       
               <h3>Nossa Missão</h3>
@@ -1040,5 +1040,40 @@
       });
     });
   </script>
+<div id="history-overlay" class="form-overlay" style="display: none;">
+    <div class="form-container" style="max-height: 90vh; overflow-y: auto;">
+      <button id="close-history" class="form-close" aria-label="Fechar">×</button>
+      <h2 class="form-title">A História do Projeto Remar</h2>
+      <div class="calendar-content">
+        <p><strong>Capítulo 1: Raízes e Conexões</strong><br>
+        O Projeto Remar nasce da interseção entre esporte, inclusão e conexão humana... (siga com o texto completo aqui)</p>
+  
+        <p><strong>Capítulo 2: Encontros Transformadores</strong><br>
+        Foi nesse contexto que surgiram os primeiros sinais... (siga o texto)</p>
+  
+        <p><strong>Capítulo 3: Do Espelho d’Água à Imensidão do Mar</strong><br>
+        Outro personagem essencial nessa história é Paulo Marcelo... (siga o texto)</p>
+  
+        <p><strong>Capítulo 4: Uma Construção Coletiva</strong><br>
+        Hoje, o Projeto Remar é muito mais do que a soma das ações... (siga o texto)</p>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const openHistory = document.getElementById("open-history");
+      const closeHistory = document.getElementById("close-history");
+      const overlayHistory = document.getElementById("history-overlay");
+  
+      openHistory.addEventListener("click", () => {
+        overlayHistory.style.display = "flex";
+      });
+  
+      closeHistory.addEventListener("click", () => {
+        overlayHistory.style.display = "none";
+      });
+    });
+  </script>
