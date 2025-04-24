@@ -99,20 +99,12 @@ img {
   margin-bottom: 3rem;
 }
 
-.section-title h2,
-.about-text h3 {
+.section-title h2 {
   font-size: 2.5rem;
   color: var(--primary-color);
   margin-bottom: 1rem;
   position: relative;
   display: inline-block;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.section-title h2:hover,
-.about-text h3:hover {
-  animation: shadow-drop-2-center 0.4s ease-in-out forwards;
 }
 
 .section-title h2::after {
@@ -130,36 +122,6 @@ img {
   color: var(--black-color);
   max-width: 700px;
   margin: 0 auto;
-}
-
-@-webkit-keyframes shadow-drop-2-center {
-  0% {
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-  100% {
-    -webkit-transform: translateZ(50px);
-            transform: translateZ(50px);
-    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-  }
-}
-
-@keyframes shadow-drop-2-center {
-  0% {
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-  100% {
-    -webkit-transform: translateZ(50px);
-            transform: translateZ(50px);
-    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-  }
 }
 
 /* Barra de Acessibilidade */
@@ -1139,3 +1101,10 @@ textarea.form-control {
     color: var(--primary-color);
   }
 </style>
+.text-shadow-hover {
+  transition: all 0.3s ease-in-out;
+}
+
+.text-shadow-hover:hover {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
