@@ -75,7 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
             // Adicionar o arquivo anexado ao FormData
             if (fileInput.files.length > 0) {
               const file = fileInput.files[0];
-              formData.append("file", await fileToBase64(file));
+              const base64File = await fileToBase64(file);
+              console.log("Arquivo Base64:", base64File); // Verificar o conteúdo do arquivo
+              formData.append("file", base64File);
               formData.append("fileName", file.name);
               formData.append("mimeType", file.type);
             }
