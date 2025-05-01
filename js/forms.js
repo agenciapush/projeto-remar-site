@@ -1,170 +1,149 @@
-// Funções para os formulários ocultos
-document.addEventListener('DOMContentLoaded', function() {
-    // Elementos do formulário de participante
-    const openParticipantFormBtn = document.getElementById('open-participant-form');
-    const participantFormOverlay = document.getElementById('participant-form-overlay');
-    const closeParticipantFormBtn = document.getElementById('close-participant-form');
-    const participantForm = document.getElementById('participant-form');
+// forms.js atualizado mantendo a mesma experiência e corrigindo duplicidades/boas práticas
 
-    // Elementos do formulário de voluntário
-    const openVolunteerFormBtn = document.getElementById('open-volunteer-form');
-    const volunteerFormOverlay = document.getElementById('volunteer-form-overlay');
-    const closeVolunteerFormBtn = document.getElementById('close-volunteer-form');
-    const volunteerForm = document.getElementById('volunteer-form');
-
-    // Função para enviar dados do formulário de participante
-    async function enviarFormularioParticipante(dadosFormulario) {
-        try {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbzLjNUNQkSnDYykk-Zdu8e47mjcLPwOAjI6xp0KJwVkXYVvRbpMwxeFBS9aZxH4damT/exec
-', { // <-- Substitua aqui
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(dadosFormulario)
-            });
-
-            alert('Formulário enviado com sucesso! Obrigado por se inscrever.');
-        } catch (error) {
-            console.error('Erro ao enviar formulário:', error);
-            alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
-        }
+// Função genérica para abrir e fechar overlays
+document.addEventListener("DOMContentLoaded", function () {
+    // Calendário
+    const openCalendar = document.getElementById("open-calendar");
+    const closeCalendar = document.getElementById("close-calendar");
+    const overlayCalendar = document.getElementById("calendar-overlay");
+  
+    if (openCalendar && closeCalendar && overlayCalendar) {
+      openCalendar.addEventListener("click", () => {
+        overlayCalendar.style.display = "flex";
+      });
+  
+      closeCalendar.addEventListener("click", () => {
+        overlayCalendar.style.display = "none";
+      });
     }
-
-    // Abrir formulário de participante
-    if (openParticipantFormBtn) {
-        openParticipantFormBtn.addEventListener('click', function() {
-            if (participantFormOverlay) {
-                participantFormOverlay.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Impede rolagem da página
-            }
-        });
+  
+    // Sobre: Nossa História
+    const openHistory = document.getElementById("open-history");
+    const closeHistory = document.getElementById("close-history");
+    const overlayHistory = document.getElementById("history-overlay");
+  
+    if (openHistory && closeHistory && overlayHistory) {
+      openHistory.addEventListener("click", () => {
+        overlayHistory.style.display = "flex";
+      });
+  
+      closeHistory.addEventListener("click", () => {
+        overlayHistory.style.display = "none";
+      });
     }
-
-    // Fechar formulário de participante
-    if (closeParticipantFormBtn) {
-        closeParticipantFormBtn.addEventListener('click', function() {
-            if (participantFormOverlay) {
-                participantFormOverlay.style.display = 'none';
-                document.body.style.overflow = ''; // Restaura rolagem da página
-            }
-        });
+  
+    // Sobre: Nossa Missão
+    const openMission = document.getElementById("open-mission");
+    const closeMission = document.getElementById("close-mission");
+    const overlayMission = document.getElementById("mission-overlay");
+  
+    if (openMission && closeMission && overlayMission) {
+      openMission.addEventListener("click", () => {
+        overlayMission.style.display = "flex";
+      });
+  
+      closeMission.addEventListener("click", () => {
+        overlayMission.style.display = "none";
+      });
     }
-
-    // Abrir formulário de voluntário
-    if (openVolunteerFormBtn) {
-        openVolunteerFormBtn.addEventListener('click', function() {
-            if (volunteerFormOverlay) {
-                volunteerFormOverlay.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Impede rolagem da página
-            }
-        });
+  
+    // Sobre: Nossos Valores
+    const openValues = document.getElementById("open-values");
+    const closeValues = document.getElementById("close-values");
+    const overlayValues = document.getElementById("values-overlay");
+  
+    if (openValues && closeValues && overlayValues) {
+      openValues.addEventListener("click", () => {
+        overlayValues.style.display = "flex";
+      });
+  
+      closeValues.addEventListener("click", () => {
+        overlayValues.style.display = "none";
+      });
     }
-
-    // Fechar formulário de voluntário
-    if (closeVolunteerFormBtn) {
-        closeVolunteerFormBtn.addEventListener('click', function() {
-            if (volunteerFormOverlay) {
-                volunteerFormOverlay.style.display = 'none';
-                document.body.style.overflow = ''; // Restaura rolagem da página
-            }
-        });
-    }
-
-    // Fechar formulários ao clicar fora deles
-    window.addEventListener('click', function(event) {
-        if (event.target === participantFormOverlay) {
-            participantFormOverlay.style.display = 'none';
-            document.body.style.overflow = '';
-        }
-        if (event.target === volunteerFormOverlay) {
-            volunteerFormOverlay.style.display = 'none';
-            document.body.style.overflow = '';
-        }
-    });
-
-    // Validação e envio do formulário de participante
+  
+    // Formulário de Participante - Envio
+    const participantForm = document.getElementById("participant-form");
+  
     if (participantForm) {
-        participantForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            let isValid = true;
-            const requiredFields = participantForm.querySelectorAll('[required]');
-
-            requiredFields.forEach(function(field) {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    const errorElement = document.getElementById(field.id + '-error');
-                    if (errorElement) {
-                        errorElement.style.display = 'block';
-                        errorElement.textContent = 'Este campo é obrigatório.';
-                    }
-                }
-            });
-
-            if (isValid) {
-                const formData = {};
-                const fields = participantForm.querySelectorAll('input, select, textarea');
-
-                fields.forEach(function(field) {
-                    formData[field.name] = field.value;
-                });
-
-                enviarFormularioParticipante(formData);
-
-                participantFormOverlay.style.display = 'none';
-                document.body.style.overflow = '';
-                participantForm.reset();
+        participantForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
+          
+            const formData = {
+              "Nome completo": document.getElementById("participant-name")?.value,
+              "Data de nascimento": document.getElementById("participant-birth")?.value,
+              "CPF": document.getElementById("participant-cpf")?.value,
+              "RG": document.getElementById("participant-rg")?.value,
+              "Telefone/WhatsApp": document.getElementById("participant-phone")?.value,
+              "E-mail": document.getElementById("participant-email")?.value,
+              "Endereço completo": document.getElementById("participant-address")?.value,
+            };
+          
+            try {
+              const response = await fetch("https://script.google.com/macros/s/AKfycbzbegnZ0M_aaeHJPPGgXKR9tAxP07uJppWqWhGkRT0WrF8D7lMPirpJ5FoeKvgAG5mP/exec", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+              });
+          
+              if (!response.ok) {
+                console.error("Erro na resposta do servidor:", response.status, response.statusText);
+                alert("Erro ao enviar o cadastro. Tente novamente.");
+                return;
+              }
+          
+              const responseText = await response.text(); // Obtemos o texto da resposta
+              let result;
+          
+              try {
+                result = JSON.parse(responseText); // Tentamos fazer o parsing do JSON
+              } catch (error) {
+                console.error("Erro ao interpretar a resposta como JSON:", responseText);
+                alert("Erro ao enviar o cadastro. Tente novamente.");
+                return;
+              }
+          
+              if (result.status === "success") {
+                alert("Cadastro enviado com sucesso!");
+                participantForm.reset(); // limpa o formulário
+              } else {
+                console.error("Resposta inesperada do servidor:", result);
+                alert("Erro ao enviar o cadastro. Tente novamente.");
+              }
+            } catch (error) {
+              console.error("Erro de conexão ou processamento:", error);
+              alert("Erro ao enviar o cadastro. Tente novamente.");
             }
-        });
+          });
     }
-
-    // Validação do formulário de voluntário (apenas validação local)
-    if (volunteerForm) {
-        volunteerForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            let isValid = true;
-            const requiredFields = volunteerForm.querySelectorAll('[required]');
-
-            requiredFields.forEach(function(field) {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    const errorElement = document.getElementById(field.id + '-error');
-                    if (errorElement) {
-                        errorElement.style.display = 'block';
-                        errorElement.textContent = 'Este campo é obrigatório.';
-                    }
-                }
-            });
-
-            if (isValid) {
-                const formData = {};
-                const fields = participantForm.querySelectorAll('input, select, textarea');
-                
-                fields.forEach(function(field) {
-                    formData[field.name] = field.value;
-                });
-            
-                enviarFormularioParticipante(formData);
-            
-                participantFormOverlay.style.display = 'none';
-                document.body.style.overflow = '';
-                participantForm.reset();
-            }
-            
-        });
+  
+    // Formulários - Abrir/Fechar (Participante e Voluntário)
+    const openParticipantBtn = document.getElementById("open-participant-form");
+    const closeParticipantBtn = document.getElementById("close-participant-form");
+    const participantOverlay = document.getElementById("participant-form-overlay");
+  
+    if (openParticipantBtn && closeParticipantBtn && participantOverlay) {
+      openParticipantBtn.addEventListener("click", () => {
+        participantOverlay.style.display = "flex";
+      });
+  
+      closeParticipantBtn.addEventListener("click", () => {
+        participantOverlay.style.display = "none";
+      });
     }
-
-    // Limpar mensagens de erro quando o usuário começa a digitar
-    const formInputs = document.querySelectorAll('.form-control');
-    formInputs.forEach(function(input) {
-        input.addEventListener('input', function() {
-            const errorElement = document.getElementById(input.id + '-error');
-            if (errorElement) {
-                errorElement.style.display = 'none';
-            }
-        });
-    });
-});
+  
+    const openVolunteerBtn = document.getElementById("open-volunteer-form");
+    const closeVolunteerBtn = document.getElementById("close-volunteer-form");
+    const volunteerOverlay = document.getElementById("volunteer-form-overlay");
+  
+    if (openVolunteerBtn && closeVolunteerBtn && volunteerOverlay) {
+      openVolunteerBtn.addEventListener("click", () => {
+        volunteerOverlay.style.display = "flex";
+      });
+  
+      closeVolunteerBtn.addEventListener("click", () => {
+        volunteerOverlay.style.display = "none";
+      });
+    }
+  });
+  

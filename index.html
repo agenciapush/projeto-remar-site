@@ -1123,10 +1123,7 @@
     </div>
   </div>
   
-
-</body>
-</html>
-<script>
+  <script>
     document.addEventListener("DOMContentLoaded", function () {
       const openHistory = document.getElementById("open-history");
       const closeHistory = document.getElementById("close-history");
@@ -1183,4 +1180,71 @@
       });
     });
   </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const participantForm = document.getElementById("participant-form");
+  
+    participantForm.addEventListener("submit", async function (e) {
+      e.preventDefault(); // Impede o envio normal
+  
+      const formData = {
+        "Nome completo": document.getElementById("participant-name").value,
+        "Data de nascimento": document.getElementById("participant-birth").value,
+        "CPF": document.getElementById("participant-cpf").value,
+        "RG": document.getElementById("participant-rg").value,
+        "Telefone/WhatsApp": document.getElementById("participant-phone").value,
+        "E-mail": document.getElementById("participant-email").value,
+        "Endereço completo": document.getElementById("participant-address").value,
+        "Nome do responsável": document.getElementById("guardian-name").value,
+        "Data de nascimento do responsável": document.getElementById("guardian-birth").value,
+        "Parentesco com o participante": document.getElementById("guardian-relation").value,
+        "RG do responsável": document.getElementById("guardian-rg").value,
+        "CPF do responsável": document.getElementById("guardian-cpf").value,
+        "Nome do contato de emergência": document.getElementById("emergency-name").value,
+        "Relação com o participante": document.getElementById("emergency-relation").value,
+        "Telefone de emergência": document.getElementById("emergency-phone").value,
+        "Tipo de deficiência": document.getElementById("disability-type").value,
+        "Detalhes da deficiência": document.getElementById("disability-details").value,
+        "Utiliza": "A preencher depois", // você ainda não me mandou o controle desses checkboxes, ajustaremos depois
+        "Faz uso de medicamentos?": document.getElementById("medication").value,
+        "Quais medicamentos": document.getElementById("medication-details").value,
+        "Possui alergias?": document.getElementById("allergies").value,
+        "Quais alergias": document.getElementById("allergy-details").value,
+        "Apresenta episódios de convulsão?": document.getElementById("convulsions").value,
+        "Sabe nadar?": document.getElementById("can-swim").value,
+        "Laudo médico": "Anexo manualmente", // não temos envio automático de arquivos no Apps Script simples
+        "Grau de escolaridade": document.getElementById("education").value,
+        "Meio de transporte até o projeto": document.getElementById("transport").value,
+        "Atividades terapêuticas": "A preencher depois", // idem
+        "Atividades extracurriculares": "A preencher depois", // idem
+      };
+  
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbzbegnZ0M_aaeHJPPGgXKR9tAxP07uJppWqWhGkRT0WrF8D7lMPirpJ5FoeKvgAG5mP/exec", {
+          method: "POST",
+          contentType: "application/json",
+          body: JSON.stringify(formData),
+        });
+  
+        const result = await response.json();
+        if (result.status === "success") {
+          alert("Cadastro enviado com sucesso!");
+          participantForm.reset(); // limpa o formulário
+        } else {
+          alert("Erro ao enviar o cadastro. Tente novamente.");
+        }
+      } catch (error) {
+        alert("Erro ao enviar o cadastro. Tente novamente.");
+        console.error(error);
+      }
+    });
+  });
+  </script>
+  
+
+
+</body>
+</html>
+
   
