@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       try {
         // Enviar os dados do formulário (sem o arquivo)
-        const response = await fetch("https://script.google.com/macros/library/d/178Zks-CH-JmXFEioDh83QBMqcSC5bSFuCgljjd3R1PIQyCBd28EpqKP0/3", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbxr2oksWiP5Oz-6lMrvHpN2eUz0TYqvoU6MiyyHbOMhGK_-zu-LrtnqAQ2uws8t6hAEUQ/exec", {
           method: "POST",
           body: JSON.stringify(formJSON),
           headers: { "Content-Type": "application/json" },
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
               fileFormData.append("fileName", file.name);
               fileFormData.append("mimeType", file.type);
 
-              const fileResponse = await fetch("https://script.google.com/macros/s/AKfycbzbegnZ0M_aaeHJPPGgXKR9tAxP07uJppWqWhGkRT0WrF8D7lMPirpJ5FoeKvgAG5mP/exec", {
+              const fileResponse = await fetch("https://script.google.com/macros/s/AKfycbxr2oksWiP5Oz-6lMrvHpN2eUz0TYqvoU6MiyyHbOMhGK_-zu-LrtnqAQ2uws8t6hAEUQ/exec", {
                 method: "POST",
                 body: fileFormData,
               });
