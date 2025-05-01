@@ -69,52 +69,46 @@ document.addEventListener("DOMContentLoaded", function () {
         participantForm.addEventListener("submit", async function (e) {
             e.preventDefault();
           
-            const formData = {
-              "Nome completo": document.getElementById("participant-name")?.value,
-              "Data de nascimento": document.getElementById("participant-birth")?.value,
-              "CPF": document.getElementById("participant-cpf")?.value,
-              "RG": document.getElementById("participant-rg")?.value,
-              "Telefone/WhatsApp": document.getElementById("participant-phone")?.value,
-              "E-mail": document.getElementById("participant-email")?.value,
-              "Endereço completo": document.getElementById("participant-address")?.value,
-            };
-          
+            const formData = new FormData(participantForm);
+            const fileInput = document.getElementById("medical-report");
+
+            // Adicionar o arquivo anexado ao FormData
+            if (fileInput.files.length > 0) {
+              const file = fileInput.files[0];
+              formData.append("file", await fileToBase64(file));
+              formData.append("fileName", file.name);
+              formData.append("mimeType", file.type);
+            }
+
             try {
               const response = await fetch("https://script.google.com/macros/s/AKfycbzbegnZ0M_aaeHJPPGgXKR9tAxP07uJppWqWhGkRT0WrF8D7lMPirpJ5FoeKvgAG5mP/exec", {
                 method: "POST",
+                body: JSON.stringify(Object.fromEntries(formData)),
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
               });
           
-              if (!response.ok) {
-                console.error("Erro na resposta do servidor:", response.status, response.statusText);
-                alert("Erro ao enviar o cadastro. Tente novamente.");
-                return;
-              }
-          
-              const responseText = await response.text(); // Obtemos o texto da resposta
-              let result;
-          
-              try {
-                result = JSON.parse(responseText); // Tentamos fazer o parsing do JSON
-              } catch (error) {
-                console.error("Erro ao interpretar a resposta como JSON:", responseText);
-                alert("Erro ao enviar o cadastro. Tente novamente.");
-                return;
-              }
-          
+              const result = await response.json();
               if (result.status === "success") {
                 alert("Cadastro enviado com sucesso!");
                 participantForm.reset(); // limpa o formulário
               } else {
-                console.error("Resposta inesperada do servidor:", result);
                 alert("Erro ao enviar o cadastro. Tente novamente.");
               }
             } catch (error) {
-              console.error("Erro de conexão ou processamento:", error);
+              console.error("Erro ao enviar o cadastro:", error);
               alert("Erro ao enviar o cadastro. Tente novamente.");
             }
           });
+    }
+  
+    // Função para converter arquivo em Base64
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(",")[1]);
+        reader.onerror = (error) => reject(error);
+        reader.readAsDataURL(file);
+      });
     }
   
     // Formulários - Abrir/Fechar (Participante e Voluntário)
@@ -146,4 +140,3 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   });
-  
