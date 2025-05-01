@@ -84,34 +84,41 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         const result = await response.json();
-        if (result.status === "success") {
+        if (response.ok && result.status === "success") {
           alert("Dados do formulário enviados com sucesso!");
 
-          // Se houver arquivo, enviar para outro endpoint
           if (fileInput.files.length > 0) {
-            const file = fileInput.files[0];
-            const fileFormData = new FormData();
-            fileFormData.append("file", file);
-            fileFormData.append("fileName", file.name);
-            fileFormData.append("mimeType", file.type);
+            try {
+              const file = fileInput.files[0];
+              const fileFormData = new FormData();
+              fileFormData.append("file", file);
+              fileFormData.append("fileName", file.name);
+              fileFormData.append("mimeType", file.type);
 
-            const fileResponse = await fetch("https://script.google.com/macros/s/AKfycbzbegnZ0M_aaeHJPPGgXKR9tAxP07uJppWqWhGkRT0WrF8D7lMPirpJ5FoeKvgAG5mP/exec", {
-              method: "POST",
-              body: fileFormData,
-            });
+              const fileResponse = await fetch("https://script.google.com/macros/s/AKfycbzbegnZ0M_aaeHJPPGgXKR9tAxP07uJppWqWhGkRT0WrF8D7lMPirpJ5FoeKvgAG5mP/exec", {
+                method: "POST",
+                body: fileFormData,
+              });
 
-            const fileResult = await fileResponse.json();
-            if (fileResult.status === "success") {
-              alert("Arquivo enviado com sucesso!");
-            } else {
+              const fileResult = await fileResponse.json();
+              if (fileResponse.ok && fileResult.status === "success") {
+                alert("Arquivo enviado com sucesso!");
+              } else {
+                alert("Erro ao enviar o arquivo.");
+              }
+            } catch (fileError) {
+              console.error("Erro ao enviar arquivo:", fileError);
               alert("Erro ao enviar o arquivo.");
             }
           }
 
-          participantForm.reset(); // Limpa o formulário
+          participantForm.reset();
+          const overlay = document.getElementById("participant-form-overlay");
+          if (overlay) overlay.style.display = "none";
         } else {
           alert("Erro ao enviar os dados do formulário. Tente novamente.");
         }
+
       } catch (error) {
         console.error("Erro ao enviar o cadastro:", error);
         alert("Erro ao enviar o cadastro. Tente novamente.");
