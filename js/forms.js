@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (fileInput.files.length > 0) {
               const file = fileInput.files[0];
               const base64File = await fileToBase64(file);
-              console.log("Arquivo Base64:", base64File); // Verificar o conteúdo do arquivo
               formData.append("file", base64File);
               formData.append("fileName", file.name);
               formData.append("mimeType", file.type);
