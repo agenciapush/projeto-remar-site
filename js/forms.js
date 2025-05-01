@@ -66,38 +66,57 @@ document.addEventListener("DOMContentLoaded", function () {
   const participantForm = document.getElementById("participant-form");
 
   if (participantForm) {
-      participantForm.addEventListener("submit", async function (e) {
-          e.preventDefault();
-        
-          const formData = new FormData(participantForm);
-          const fileInput = document.getElementById("medical-report");
+    participantForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-          // Adicionar o arquivo anexado ao FormData
+      const formData = new FormData(participantForm);
+      const fileInput = document.getElementById("medical-report");
+
+      // Extrair os dados do formulário para JSON
+      const formJSON = Object.fromEntries(formData.entries());
+
+      try {
+        // Enviar os dados do formulário (sem o arquivo)
+        const response = await fetch("https://script.google.com/macros/library/d/178Zks-CH-JmXFEioDh83QBMqcSC5bSFuCgljjd3R1PIQyCBd28EpqKP0/3", {
+          method: "POST",
+          body: JSON.stringify(formJSON),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        const result = await response.json();
+        if (result.status === "success") {
+          alert("Dados do formulário enviados com sucesso!");
+
+          // Se houver arquivo, enviar para outro endpoint
           if (fileInput.files.length > 0) {
             const file = fileInput.files[0];
-            formData.append("file", file); // Enviar o arquivo diretamente
-            formData.append("fileName", file.name);
-            formData.append("mimeType", file.type);
+            const fileFormData = new FormData();
+            fileFormData.append("file", file);
+            fileFormData.append("fileName", file.name);
+            fileFormData.append("mimeType", file.type);
+
+            const fileResponse = await fetch("https://script.google.com/macros/s/AKfycbzbegnZ0M_aaeHJPPGgXKR9tAxP07uJppWqWhGkRT0WrF8D7lMPirpJ5FoeKvgAG5mP/exec", {
+              method: "POST",
+              body: fileFormData,
+            });
+
+            const fileResult = await fileResponse.json();
+            if (fileResult.status === "success") {
+              alert("Arquivo enviado com sucesso!");
+            } else {
+              alert("Erro ao enviar o arquivo.");
+            }
           }
 
-          try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbzbegnZ0M_aaeHJPPGgXKR9tAxP07uJppWqWhGkRT0WrF8D7lMPirpJ5FoeKvgAG5mP/exec", {
-              method: "POST",
-              body: formData, // Enviar o FormData diretamente
-            });
-        
-            const result = await response.json();
-            if (result.status === "success") {
-              alert("Cadastro enviado com sucesso!");
-              participantForm.reset(); // limpa o formulário
-            } else {
-              alert("Erro ao enviar o cadastro. Tente novamente.");
-            }
-          } catch (error) {
-            console.error("Erro ao enviar o cadastro:", error);
-            alert("Erro ao enviar o cadastro. Tente novamente.");
-          }
-        });
+          participantForm.reset(); // Limpa o formulário
+        } else {
+          alert("Erro ao enviar os dados do formulário. Tente novamente.");
+        }
+      } catch (error) {
+        console.error("Erro ao enviar o cadastro:", error);
+        alert("Erro ao enviar o cadastro. Tente novamente.");
+      }
+    });
   }
 
   // Função para converter arquivo em Base64 (não usada, mas mantida para referência futura)
