@@ -27,15 +27,44 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Adicionar o evento de formatação ao campo de CPF
-  const cpfInput = document.getElementById("participant-cpf");
-  const guardianCpfInput = document.getElementById("guardian-cpf");
+  // Função para formatar o Telefone
+  function formatPhoneNumberInput(event) {
+    const input = event.target;
+    const cleaned = input.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+    const match = cleaned.match(/^(\d{2})(\d{5})(\d{4})$/);
+    if (match) {
+      input.value = `(${match[1]}) ${match[2]}.${match[3]}`;
+    }
+  }
 
-  if (cpfInput) {
-    cpfInput.addEventListener("input", formatCPFInput);
+  // Adicionar o evento de formatação aos campos de CPF e Telefone (Participantes)
+  const participantCpfInput = document.getElementById("participant-cpf");
+  const guardianCpfInput = document.getElementById("guardian-cpf");
+  const participantPhoneInput = document.getElementById("participant-phone");
+  const emergencyPhoneInput = document.getElementById("emergency-phone");
+
+  if (participantCpfInput) {
+    participantCpfInput.addEventListener("input", formatCPFInput);
   }
   if (guardianCpfInput) {
     guardianCpfInput.addEventListener("input", formatCPFInput);
+  }
+  if (participantPhoneInput) {
+    participantPhoneInput.addEventListener("input", formatPhoneNumberInput);
+  }
+  if (emergencyPhoneInput) {
+    emergencyPhoneInput.addEventListener("input", formatPhoneNumberInput);
+  }
+
+  // Adicionar o evento de formatação aos campos de CPF e Telefone (Voluntários)
+  const volunteerCpfInput = document.getElementById("volunteer-cpf");
+  const volunteerPhoneInput = document.getElementById("volunteer-phone");
+
+  if (volunteerCpfInput) {
+    volunteerCpfInput.addEventListener("input", formatCPFInput);
+  }
+  if (volunteerPhoneInput) {
+    volunteerPhoneInput.addEventListener("input", formatPhoneNumberInput);
   }
 
   // Exibir mensagem de "loading" ao enviar formulário

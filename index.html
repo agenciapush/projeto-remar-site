@@ -714,10 +714,10 @@
                 <div class="form-group">
                   <label>Utiliza:</label>
                   <div class="form-check">
-                    <label><input type="checkbox" value="prótese"> Prótese</label>
-                    <label><input type="checkbox" value="órtese"> Órtese</label>
-                    <label><input type="checkbox" value="cadeira"> Cadeira de rodas</label>
-                    <label><input type="checkbox" value="muletas"> Muletas</label>
+                    <label><input type="checkbox" name="utiliza" value="Prótese"> Prótese</label>
+                    <label><input type="checkbox" name="utiliza" value="Órtese"> Órtese</label>
+                    <label><input type="checkbox" name="utiliza" value="Cadeira de rodas"> Cadeira de rodas</label>
+                    <label><input type="checkbox" name="utiliza" value="Muletas"> Muletas</label>
                   </div>
                 </div>
               </div>
@@ -1190,6 +1190,11 @@ function formatPhoneNumberInput(event) {
     input.value = `(${match[1]}) ${match[2]}.${match[3]}`;
   }
 }
+// Função para capturar os valores dos checkboxes marcados
+function getCheckedValues(name) {
+    const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+    return Array.from(checkboxes).map((checkbox) => checkbox.value).join(", ");
+  }
 
 // Adicionar o evento de formatação ao campo de telefone
 document.addEventListener("DOMContentLoaded", function () {
@@ -1222,7 +1227,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "Telefone de emergência": document.getElementById("emergency-phone").value, // Já formatado
       "Tipo de deficiência": document.getElementById("disability-type").value,
       "Detalhes da deficiência": document.getElementById("disability-details").value,
-      "Utiliza": "A preencher depois", // você ainda não me mandou o controle desses checkboxes, ajustaremos depois
+      "Utiliza": getCheckedValues("utiliza"), // Captura os valores dos checkboxes
       "Faz uso de medicamentos?": document.getElementById("medication").value,
       "Quais medicamentos": document.getElementById("medication-details").value,
       "Possui alergias?": document.getElementById("allergies").value,
