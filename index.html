@@ -108,14 +108,14 @@
             </div>
       
             <div class="about-image animate-on-scroll">
-                <iframe 
+              <iframe 
+                  id="vimeo-iframe"
                   src="https://player.vimeo.com/video/1078089981?h=b8e6086bf7&badge=0&autopause=0&player_id=0&app_id=58479"
                   frameborder="0"
                   allow="autoplay; fullscreen; picture-in-picture"
-                  allowfullscreen
                   title="Vídeo Remar Institucional 2024"
                   style="width: 100%; max-width: 360px; height: 640px; margin-top: 5rem; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin: 0 auto; display: block;">
-                </iframe>
+              </iframe>
               </div>
       </section>      
 
@@ -819,7 +819,7 @@
               <!-- Termo de Responsabilidade -->
               <div class="form-row">
                 <div class="form-group">
-                  <label style="text-align: justify;">Termo de Responsabilidade <span class="required-field">*</span></label>
+                  <label style="text-align: justify;">Termo de Responsabilidade <span class="required-field"></span></label>
                   <div class="form-check">
                     <input type="checkbox" id="responsibility-term" required>
                     <label for="responsibility-term" style="text-align: justify;">
@@ -832,7 +832,7 @@
               <!-- Autorização de Uso de Imagem -->
               <div class="form-row">
                 <div class="form-group">
-                  <label style="text-align: justify;">Autorização de Uso de Imagem <span class="required-field">*</span></label>
+                  <label style="text-align: justify;">Autorização de Uso de Imagem <span class="required-field"></span></label>
 <div class="form-check">
   <input type="checkbox" id="image-authorization" required>
   <label for="image-authorization" style="text-align: justify;">
@@ -1227,12 +1227,11 @@
         });
   
         const result = await response.json();
-        if (result.status === "success") {
-          alert("Cadastro enviado com sucesso!");
-          participantForm.reset(); // limpa o formulário
-        } else {
-          alert("Erro ao enviar o cadastro. Tente novamente.");
-        }
+if (result.status === "success") {
+  participantForm.reset(); // limpa o formulário
+} else {
+  alert("Erro ao enviar o cadastro. Tente novamente.");
+}
       } catch (error) {
         alert("Erro ao enviar o cadastro. Tente novamente.");
         console.error(error);
