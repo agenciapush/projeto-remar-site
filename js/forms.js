@@ -1,167 +1,25 @@
-// forms.js atualizado mantendo a mesma experiência e corrigindo duplicidades/boas práticas
-
 // Função genérica para abrir e fechar overlays
 document.addEventListener("DOMContentLoaded", function () {
-  // Calendário
-  const openCalendar = document.getElementById("open-calendar");
-  const closeCalendar = document.getElementById("close-calendar");
-  const overlayCalendar = document.getElementById("calendar-overlay");
+  // Função genérica para configurar abertura e fechamento de overlays
+  function setupOverlay(openBtnId, closeBtnId, overlayId) {
+    const openBtn = document.getElementById(openBtnId);
+    const closeBtn = document.getElementById(closeBtnId);
+    const overlay = document.getElementById(overlayId);
 
-  if (openCalendar && closeCalendar && overlayCalendar) {
-    openCalendar.addEventListener("click", () => {
-      overlayCalendar.style.display = "flex";
-    });
+    if (openBtn && closeBtn && overlay) {
+      openBtn.addEventListener("click", () => {
+        overlay.style.display = "flex";
+      });
 
-    closeCalendar.addEventListener("click", () => {
-      overlayCalendar.style.display = "none";
-    });
+      closeBtn.addEventListener("click", () => {
+        overlay.style.display = "none";
+      });
+    }
   }
 
-  // Sobre: Nossa História
-  const openHistory = document.getElementById("open-history");
-  const closeHistory = document.getElementById("close-history");
-  const overlayHistory = document.getElementById("history-overlay");
-
-  if (openHistory && closeHistory && overlayHistory) {
-    openHistory.addEventListener("click", () => {
-      overlayHistory.style.display = "flex";
-    });
-
-    closeHistory.addEventListener("click", () => {
-      overlayHistory.style.display = "none";
-    });
-  }
-
-  // Sobre: Nossa Missão
-  const openMission = document.getElementById("open-mission");
-  const closeMission = document.getElementById("close-mission");
-  const overlayMission = document.getElementById("mission-overlay");
-
-  if (openMission && closeMission && overlayMission) {
-    openMission.addEventListener("click", () => {
-      overlayMission.style.display = "flex";
-    });
-
-    closeMission.addEventListener("click", () => {
-      overlayMission.style.display = "none";
-    });
-  }
-
-  // Sobre: Nossos Valores
-  const openValues = document.getElementById("open-values");
-  const closeValues = document.getElementById("close-values");
-  const overlayValues = document.getElementById("values-overlay");
-
-  if (openValues && closeValues && overlayValues) {
-    openValues.addEventListener("click", () => {
-      overlayValues.style.display = "flex";
-    });
-
-    closeValues.addEventListener("click", () => {
-      overlayValues.style.display = "none";
-    });
-  }
-
-  // Formulário de Participante - Envio
-  const participantForm = document.getElementById("participant-form");
-
-  if (participantForm) {
-    participantForm.addEventListener("submit", async function (e) {
-      e.preventDefault();
-
-      const formData = new FormData(participantForm);
-      const fileInput = document.getElementById("medical-report");
-
-      // Extrair os dados do formulário para JSON
-      const formJSON = Object.fromEntries(formData.entries());
-
-      try {
-        // Enviar os dados do formulário (sem o arquivo)
-        const response = await fetch("https://script.google.com/macros/s/AKfycbxr2oksWiP5Oz-6lMrvHpN2eUz0TYqvoU6MiyyHbOMhGK_-zu-LrtnqAQ2uws8t6hAEUQ/exec", {
-          method: "POST",
-          body: JSON.stringify(formJSON),
-          headers: { "Content-Type": "application/json" },
-        });
-
-        const result = await response.json();
-        if (response.ok && result.status === "success") {
-          alert("Dados do formulário enviados com sucesso!");
-
-          if (fileInput.files.length > 0) {
-            try {
-              const file = fileInput.files[0];
-              const fileFormData = new FormData();
-              fileFormData.append("file", file);
-              fileFormData.append("fileName", file.name);
-              fileFormData.append("mimeType", file.type);
-
-              const fileResponse = await fetch("https://script.google.com/macros/s/AKfycbxr2oksWiP5Oz-6lMrvHpN2eUz0TYqvoU6MiyyHbOMhGK_-zu-LrtnqAQ2uws8t6hAEUQ/exec", {
-                method: "POST",
-                body: fileFormData,
-              });
-
-              const fileResult = await fileResponse.json();
-              if (fileResponse.ok && fileResult.status === "success") {
-                alert("Arquivo enviado com sucesso!");
-              } else {
-                alert("Erro ao enviar o arquivo.");
-              }
-            } catch (fileError) {
-              console.error("Erro ao enviar arquivo:", fileError);
-              alert("Erro ao enviar o arquivo.");
-            }
-          }
-
-          participantForm.reset();
-          const overlay = document.getElementById("participant-form-overlay");
-          if (overlay) overlay.style.display = "none";
-        } else {
-          alert("Erro ao enviar os dados do formulário. Tente novamente.");
-        }
-
-      } catch (error) {
-        console.error("Erro ao enviar o cadastro:", error);
-        alert("Erro ao enviar o cadastro. Tente novamente.");
-      }
-    });
-  }
-
-  // Função para converter arquivo em Base64 (não usada, mas mantida para referência futura)
-  function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result.split(",")[1]);
-      reader.onerror = (error) => reject(error);
-      reader.readAsDataURL(file);
-    });
-  }
-
-  // Formulários - Abrir/Fechar (Participante e Voluntário)
-  const openParticipantBtn = document.getElementById("open-participant-form");
-  const closeParticipantBtn = document.getElementById("close-participant-form");
-  const participantOverlay = document.getElementById("participant-form-overlay");
-
-  if (openParticipantBtn && closeParticipantBtn && participantOverlay) {
-    openParticipantBtn.addEventListener("click", () => {
-      participantOverlay.style.display = "flex";
-    });
-
-    closeParticipantBtn.addEventListener("click", () => {
-      participantOverlay.style.display = "none";
-    });
-  }
-
-  const openVolunteerBtn = document.getElementById("open-volunteer-form");
-  const closeVolunteerBtn = document.getElementById("close-volunteer-form");
-  const volunteerOverlay = document.getElementById("volunteer-form-overlay");
-
-  if (openVolunteerBtn && closeVolunteerBtn && volunteerOverlay) {
-    openVolunteerBtn.addEventListener("click", () => {
-      volunteerOverlay.style.display = "flex";
-    });
-
-    closeVolunteerBtn.addEventListener("click", () => {
-      volunteerOverlay.style.display = "none";
-    });
-  }
+  // Configurar overlays específicos
+  setupOverlay("open-calendar", "close-calendar", "calendar-overlay");
+  setupOverlay("open-history", "close-history", "history-overlay");
+  setupOverlay("open-participant-form", "close-participant-form", "participant-form-overlay");
+  setupOverlay("open-volunteer-form", "close-volunteer-form", "volunteer-form-overlay");
 });
