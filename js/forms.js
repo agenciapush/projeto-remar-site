@@ -60,11 +60,17 @@ style.textContent = `
 document.head.appendChild(style);
 
       // Simular envio do formulário com um delay
-      setTimeout(() => {
-        document.body.removeChild(loadingMessage); // Remover a mensagem de "loading"
-        alert("Formulário enviado com sucesso!"); // Mensagem de sucesso
-        form.reset(); // Limpar o formulário
-      }, 3000); // Tempo de delay (3 segundos)
+setTimeout(() => {
+  document.body.removeChild(loadingMessage); // Remover a mensagem de "loading"
+  alert("Formulário enviado com sucesso!"); // Mensagem de sucesso
+  form.reset(); // Limpar o formulário
+
+  // Fechar o formulário automaticamente
+  const overlay = form.closest(".form-overlay"); // Localizar o overlay pai do formulário
+  if (overlay) {
+    overlay.style.display = "none"; // Fechar o overlay
+  }
+}, 3000); // Tempo de delay (3 segundos)
     });
   });
 
