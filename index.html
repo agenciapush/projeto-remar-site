@@ -803,17 +803,16 @@
                 <div class="form-group">
                   <label>Participa de atividades terapêuticas?</label>
                   <div class="form-check">
-                    <label><input type="checkbox" value="fisioterapia"> Fisioterapia</label>
-                    <label><input type="checkbox" value="fono"> Fonoaudiologia</label>
-                    <label><input type="checkbox" value="to"> Terapia Ocupacional</label>
-                    
+                    <label><input type="checkbox" name="therapeutic-activities" value="Fisioterapia"> Fisioterapia</label>
+                    <label><input type="checkbox" name="therapeutic-activities" value="Fonoaudiologia"> Fonoaudiologia</label>
+                    <label><input type="checkbox" name="therapeutic-activities" value="Terapia Ocupacional"> Terapia Ocupacional</label>
                   </div>
-                  <input type="text" class="form-control" placeholder="Outras atividades, especificar">
+                  <input type="text" id="other-therapies" class="form-control" placeholder="Outras atividades, especificar">
                 </div>
               </div>
-            </div>
+             
+              
       
-            <div class="form-section">
               <h3 class="form-section-title">Termos e Condições</h3>
             
               <!-- Termo de Responsabilidade -->
@@ -1237,8 +1236,10 @@ document.addEventListener("DOMContentLoaded", function () {
       "Laudo médico": "Anexo manualmente", // não temos envio automático de arquivos no Apps Script simples
       "Grau de escolaridade": document.getElementById("education").value,
       "Meio de transporte até o projeto": document.getElementById("transport").value,
-      "Atividades terapêuticas": "A preencher depois", // idem
-      "Atividades extracurriculares": "A preencher depois", // idem
+      "Atividades terapêuticas": getCheckedValues("therapeutic-activities"),
+      "Atividades extracurriculares": document.getElementById("other-therapies")?.value || "",
+
+
     };
 
     try {

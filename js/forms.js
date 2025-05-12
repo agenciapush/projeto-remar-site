@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
       closeBtn.addEventListener("click", () => {
         overlay.style.display = "none";
       });
+    } else {
+      console.warn(`Overlay configuration failed for IDs: ${openBtnId}, ${closeBtnId}, ${overlayId}`);
     }
   }
 
