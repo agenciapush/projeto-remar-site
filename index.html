@@ -1310,6 +1310,15 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  document.addEventListener("DOMContentLoaded", function () {
+  if (window.location.hash === "#participant-form") {
+    const overlay = document.getElementById("participant-form-overlay");
+    if (overlay) {
+      overlay.style.display = "flex";
+    }
+  }
+});
 </script>
 
 
