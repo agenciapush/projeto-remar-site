@@ -1243,19 +1243,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     };
 
-    try {
+   try {
       const response = await fetch("https://script.google.com/macros/s/AKfycbyZfgVeXcu97PfhANC7EOML-0c7h5Rs_RCREDo0VpTyQaunHB5llybGgwuf0qLACI7p/exec", {
         method: "POST",
-        contentType: "application/json",
+        mode: "no-cors", 
+        headers: {
+          "Content-Type": "text/plain",
+        },
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-      if (result.status === "success") {
-        participantForm.reset(); // limpa o formulário
-      } else {
-        alert("Erro ao enviar o cadastro. Tente novamente.");
-      }
+      // Com 'no-cors', o navegador não lê a resposta, então limpamos o form após o envio
+      alert("Cadastro enviado com sucesso! Verifique a planilha em instantes.");
+      participantForm.reset(); 
+
     } catch (error) {
       alert("Erro ao enviar o cadastro. Tente novamente.");
       console.error(error);
